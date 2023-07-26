@@ -41,8 +41,8 @@ const typeDefs = gql`
   type Mutation {
     addBudget(userId: ID!, Budget: createNewBudget!): Budget!
     addExpense(userId: ID!, budgetId: ID!, expense: createNewExpense!): Expense!
-    deleteBudget(userId: ID!, budgetId: ID!): Budget!
-    deleteExpense(userId: ID!, expenseId: ID!): Expense!
+    deleteBudget(userId: ID!, budgetId: ID!): [Expense!]
+    deleteExpense(userId: ID!, expenseId: ID!): [Budget!]
   }
 `;
 

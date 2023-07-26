@@ -61,7 +61,52 @@ const resolvers = {
         return newExpense;
     },
 
+    deleteExpense : (userId, expenseId) => {
+        const userIndex = UserList.findIndex((user) => user.id === userId);
+      
+        if (userIndex === -1) {
+          throw new Error(`User with ID ${userId} not found.`);
+        }
+      
+        const user = UserList[userIndex];
+        const budgetIndex = user.budgets.findIndex((budget) => budget.expenses.some((expense) => expense.id === expenseId));
+      
+        if (budgetIndex === -1) {
+          throw new Error(`Expense with ID ${expenseId} not found in the user's budgets.`);
+        }
+      
+        const expenseIndex = user.budgets[budgetIndex].expenses.findIndex((expense) => expense.id === expenseId);
+      
+        if (expenseIndex === -1) {
+          throw new Error(`Expense with ID ${expenseId} not found in the budget.`);
+        }
+      
+        user.budgets[budgetIndex].expenses.splice(expenseIndex, 1);
+      
+        return user.budgets.expenses;
+    },
     
+    deleteBudget: (parent, args) => {
+        const userId = args.userId;
+        const budgetId = args.budgetId;
+      
+        const userIndex = UserList.findIndex((user) => user.id === userId);
+      
+        if (userIndex === -1) {
+          throw new Error(`User with ID ${userId} not found.`);
+        }
+      
+        const user = UserList[userIndex];
+        const budgetIndex = user.budgets.findIndex((budget) => budget.id === budgetId);
+      
+        if (budgetIndex === -1) {
+          throw new Error(`Budget with ID ${budgetId} not found in the user's budgets.`);
+        }
+      
+        user.budgets.splice(budgetIndex, 1);
+      
+        return user.budgets;
+    },
   }
 };
 

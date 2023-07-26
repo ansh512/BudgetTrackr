@@ -7,7 +7,7 @@ const UserList = [
         {
           id: "1", 
           type: "Personal",
-          maxExpense: 1000,
+          max: 1000,
           expenses: [
             {
               id: "1", 
@@ -33,7 +33,7 @@ const UserList = [
         {
           id: "2", 
           type: "Travel",
-          maxExpense: 2000,
+          max: 2000,
           expenses: [
             {
               id: "3", 
@@ -59,7 +59,7 @@ const UserList = [
         {
           id: "3", 
           type: "Business",
-          maxExpense: 5000,
+          max: 5000,
           expenses: [
             {
               id: "5", 
