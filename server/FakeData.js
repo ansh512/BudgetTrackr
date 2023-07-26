@@ -6,20 +6,20 @@ const UserList = [
       budgets: [
         {
           id: "1", 
-          type: "Personal",
+          name: "Personal",
           max: 1000,
           expenses: [
             {
-              id: "1", 
+              id: "11", 
               description: "Lunch",
               amount: 20,
-              type: "Food",
+              budgetId:"1"
             },
             {
-              id: "2", 
+              id: "21", 
               description: "Movie Ticket",
               amount: 15,
-              type: "Entertainment",
+              budgetId:"1",
             },
           ],
         },
@@ -32,20 +32,20 @@ const UserList = [
       budgets: [
         {
           id: "2", 
-          type: "Travel",
+          name: "Travel",
           max: 2000,
           expenses: [
             {
               id: "3", 
               description: "Flight",
               amount: 500,
-              type: "Transportation",
+              budgetId:"2"
             },
             {
               id: "4", 
               description: "Hotel",
               amount: 150,
-              type: "Accommodation",
+              budgetId:"2"
             },
           ],
         },
@@ -58,20 +58,20 @@ const UserList = [
       budgets: [
         {
           id: "3", 
-          type: "Business",
+          name: "Business",
           max: 5000,
           expenses: [
             {
               id: "5", 
               description: "Office Supplies",
               amount: 50,
-              type: "Business Expense",
+              budgetId:"3"
             },
             {
               id: "6", 
               description: "Client Meeting",
               amount: 100,
-              type: "Business Event",
+              budgetId:"3"
             },
           ],
         },

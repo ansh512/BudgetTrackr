@@ -19,6 +19,7 @@ const typeDefs = gql`
     id: ID!
     description: String!
     amount: Int!
+    budgetId:ID!
   }
 
   input createNewBudget {
@@ -31,15 +32,16 @@ const typeDefs = gql`
     id: ID!
     description: String!
     amount:Int!
+    budgetId:ID!
   }
 
   type Query {
-    getBudget(userId: ID!): [Budget!]
-    getExpense(userId: ID!, budgetId: ID!): [Expense!]
+    getBudgets(userId: ID!): [Budget!]
+    getExpenses(userId: ID!, budgetId: ID!): [Expense!]
   }
 
   type Mutation {
-    addBudget(userId: ID!, Budget: createNewBudget!): Budget!
+    addBudget(userId: ID!, budget: createNewBudget!): Budget!
     addExpense(userId: ID!, budgetId: ID!, expense: createNewExpense!): Expense!
     deleteBudget(userId: ID!, budgetId: ID!): [Expense!]
     deleteExpense(userId: ID!, expenseId: ID!): [Budget!]

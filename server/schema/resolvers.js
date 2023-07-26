@@ -2,7 +2,7 @@ const { UserList } = require("../FakeData");
 
 const resolvers = {
   Query: {
-    getBudget: (parent, args) => {
+    getBudgets: (parent, args) => {
       const user = UserList.find((user) => user.id == args.userId);
       if (user) {
         return user.budgets;
@@ -11,9 +11,10 @@ const resolvers = {
       }
     },
 
-    getExpense: (parent, args) => {
+    getExpenses: (parent, args) => {
       const user = UserList.find((user) => user.id == args.userId);
       const budget = user.budgets.find((budget) => budget.id == args.budgetId);
+
       if (budget) {
         return budget.expenses;
       } else {
@@ -28,16 +29,16 @@ const resolvers = {
         if (!user) {
           throw new Error(`User with ID ${args.userId} not found.`);
         }
-  
+
         const newBudget = {
           id: args.budget.id,
           name: args.budget.name,
           max: args.budget.max,
           expenses: [],
         };
-  
-        user.budget.push(newBudget);
-        return newBudget;
+    
+        user.budgets.push(newBudget);
+        return args.budget;
     },
     
     addExpense: (parent, args) => {
@@ -55,6 +56,7 @@ const resolvers = {
           id: args.expense.id,
           description: args.expense.description,
           amount: args.expense.amount,
+          budgetId:args.budgetId,
         };
   
         budget.expenses.push(newExpense);
